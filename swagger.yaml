@@ -5,7 +5,29 @@ info:
 paths:
   /hello:
     get:
-      summary: Returns a greeting
+      summary: Returns a greeting message!
+      responses:
+        '200': 
+          description: A successful response 200
+        '201': 
+          description: A successful response 201
+        '400': 
+          description: Bad request
+        '500': 
+          description: Internal server error
+  /shutdown:
+    get:
+      summary: Shuts down the server
+      parameters:
+        - name: token
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
         '200':
-          description: A successful response
+          description: Server is shutting down
+        '403':
+          description: Forbidden - invalid token
+        '500':
+          description: Internal server error
